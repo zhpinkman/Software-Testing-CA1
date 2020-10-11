@@ -10,6 +10,7 @@ import org.springframework.samples.petclinic.visit.Visit;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -17,7 +18,12 @@ import static org.mockito.Mockito.when;
 class PetTest {
 
 	private Pet petInstance;
+
+	private static final int TEST_OWNER_ID = 1;
+
 	private PetType petTypeInstance;
+
+	private OwnerRepository owners;
 
 	private static final LocalDate birthDate = LocalDate.of(1999, 10, 6);
 
@@ -26,14 +32,27 @@ class PetTest {
 	public void setup() {
 		petInstance = new Pet();
 		setUpTypes();
+		setOwners();
+	}
+
+	public void setOwners() {
+		owners = mock(OwnerRepository.class);
+		when(this.owners.findById(TEST_OWNER_ID))
+			.thenReturn(new Owner());
 	}
 
 	private void setUpTypes() {
 		petTypeInstance = mock(PetType.class);
-		when(petTypeInstance.getName())
+		when(this.petTypeInstance.getName())
 			.thenReturn("Houman");
-		when(petTypeInstance.getId())
+		when(this.petTypeInstance.getId())
 			.thenReturn(0);
+	}
+
+	@Test
+	public void testSetGetOwner() {
+		petInstance.setOwner(owners.findById(TEST_OWNER_ID));
+		assertEquals(petInstance.getOwner(), owners.findById(TEST_OWNER_ID));
 	}
 
 	@Test
