@@ -8,6 +8,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.samples.petclinic.visit.Visit;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
@@ -47,6 +48,26 @@ class PetTest {
 			.thenReturn("Houman");
 		when(this.petTypeInstance.getId())
 			.thenReturn(0);
+	}
+
+	@Test
+	public void testAddVisit() {
+		Visit visit = new Visit();
+		petInstance.addVisit(visit);
+		List<Visit> visits = petInstance.getVisits();
+		assertEquals(visits.size(), 1);
+		assertEquals(visits.get(0), visit);
+	}
+
+	@Test
+	public void testRemoveVisit() {
+		Visit visit = new Visit();
+		petInstance.addVisit(visit);
+		List<Visit> visits = petInstance.getVisits();
+		assertEquals(visits.size(), 1);
+		petInstance.removeVisit(visit);
+		List<Visit> visitsAfterRemoval = petInstance.getVisits();
+		assertEquals(visitsAfterRemoval.size(), 0);
 	}
 
 	@Test
