@@ -8,6 +8,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.samples.petclinic.visit.Visit;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -48,6 +50,18 @@ class PetTest {
 			.thenReturn("Houman");
 		when(this.petTypeInstance.getId())
 			.thenReturn(0);
+	}
+
+	@Test
+	public void testGetVisits() {
+		Visit visit1 = new Visit();
+		Visit visit2 = new Visit();
+		assertEquals(petInstance.getVisits().size(), 0);
+		petInstance.addVisit(visit1);
+		assertEquals(petInstance.getVisits().size(), 1);
+		petInstance.addVisit(visit2);
+		assertEquals(petInstance.getVisits().size(), 2);
+		assertEquals(petInstance.getVisits(), new ArrayList<>(Arrays.asList(visit1, visit2)));
 	}
 
 	@Test
