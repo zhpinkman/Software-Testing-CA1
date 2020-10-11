@@ -17,6 +17,7 @@ import static org.mockito.Mockito.when;
 class PetTest {
 
 	private Pet petInstance;
+	private PetType petTypeInstance;
 
 	private static final LocalDate birthDate = LocalDate.of(1999, 10, 6);
 
@@ -24,6 +25,13 @@ class PetTest {
 	@BeforeEach
 	public void setup() {
 		petInstance = new Pet();
+		setUpTypes();
+	}
+
+	private void setUpTypes() {
+		petTypeInstance = new PetType();
+		petTypeInstance.setId(0);
+		petTypeInstance.setName("Houman");
 	}
 
 	@Test
