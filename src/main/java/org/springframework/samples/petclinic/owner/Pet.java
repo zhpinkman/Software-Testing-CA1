@@ -107,6 +107,7 @@ public class Pet extends NamedEntity {
 		return Collections.unmodifiableList(sortedVisits);
 	}
 
+//	todo
 	public List<Visit> getVisitsBetween(LocalDate start, LocalDate end) {
 		return getVisitsInternal().stream()
 			.filter(visit -> {
@@ -115,7 +116,7 @@ public class Pet extends NamedEntity {
 			})
 			.collect(Collectors.toList());
 	}
-
+// 	todo
 	public List<Visit> getVisitsUntilAge(int age) {
 		return getVisitsInternal().stream()
 			.filter(visit -> {
