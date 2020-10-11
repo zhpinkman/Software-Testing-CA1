@@ -9,3 +9,19 @@ a detailed explanation of this method:
 -- http://www.refactoring.com/catalog/replaceMethodWithMethodObject.html
 
 ###########################################################################################3
+
+
+4:
+
+
+
+###########################################################################################3
+
+5:
+
+-- public void testA(): Needs to check directly to see whether the result is correct or not.
+    it's actually not a @Test method. errors?
+
+-- public void testB(): What about the "excepts Exception" declaration?
+
+-- public void testC(): Seems fine?
