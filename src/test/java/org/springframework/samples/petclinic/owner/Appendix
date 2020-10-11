@@ -1,0 +1,11 @@
+This file is used for answering questions.
+
+3: We did not tested private methods of the said class. A private method is an
+implementation detail that should be hidden to the users of the class.
+Testing private methods breaks encapsulation. In the unlikely case that the private method
+is huge or complex that it needs it's own test, It is advised to put it in another class and
+make it public there. This change is also referred to as "Method Object". The link below is
+a detailed explanation of this method:
+-- http://www.refactoring.com/catalog/replaceMethodWithMethodObject.html
+
+###########################################################################################3
