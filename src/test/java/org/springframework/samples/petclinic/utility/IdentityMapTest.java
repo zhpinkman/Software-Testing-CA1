@@ -13,7 +13,7 @@ import java.util.stream.IntStream;
 import static java.lang.Math.abs;
 import static org.junit.jupiter.api.Assertions.*;
 
-class IdentityMapTest {
+class wIdentityMapTest {
 
 	private IdentityMap<SampleEntity> identityMapUnderTest;
 	private HashSet<SampleEntity> someSampleEntities;
