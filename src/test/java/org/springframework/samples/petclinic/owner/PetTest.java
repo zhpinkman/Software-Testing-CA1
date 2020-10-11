@@ -29,9 +29,11 @@ class PetTest {
 	}
 
 	private void setUpTypes() {
-		petTypeInstance = new PetType();
-		petTypeInstance.setId(0);
-		petTypeInstance.setName("Houman");
+		petTypeInstance = mock(PetType.class);
+		when(petTypeInstance.getName())
+			.thenReturn("Houman");
+		when(petTypeInstance.getId())
+			.thenReturn(0);
 	}
 
 	@Test
@@ -40,6 +42,13 @@ class PetTest {
 		assertEquals(petInstance.getBirthDate().getYear(), birthDate.getYear());
 		assertEquals(petInstance.getBirthDate().getMonthValue(), birthDate.getMonthValue());
 		assertEquals(petInstance.getBirthDate().getDayOfMonth(), birthDate.getDayOfMonth());
+	}
+
+	@Test
+	public void testSetGetPetType() {
+		petInstance.setType(petTypeInstance);
+		assertEquals(petInstance.getType().getId(), 0);
+		assertEquals(petInstance.getType().getName(), "Houman");
 	}
 
 //	public void setUpMockPet() {
