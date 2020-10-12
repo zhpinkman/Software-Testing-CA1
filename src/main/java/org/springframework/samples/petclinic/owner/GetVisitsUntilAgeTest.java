@@ -51,10 +51,10 @@ public class GetVisitsUntilAgeTest {
 	public static Iterable<Object []> data()
 	{
 		return Arrays.asList(new Object[][] {
-			{1, visits.subList(0, 3)},
-			{2, visits.subList(0, 5)},
-			{3, visits.subList(0, 6)},
-			{4, visits.subList(0, 7)}
+			{1, visits.subList(1, 3)},
+			{2, visits.subList(1, 5)},
+			{3, visits.subList(1, 6)},
+			{4, visits.subList(1, 7)}
 		});
 	}
 
