@@ -2,9 +2,11 @@ package org.springframework.samples.petclinic.owner;
 
 
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.springframework.samples.petclinic.visit.Visit;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -14,9 +16,7 @@ import java.util.List;
 @RunWith(Parameterized.class)
 public class GetVisitsUntilAgeTest {
 
-	private int age;
 
-	private List<Visit> resultVisits;
 	private Pet petInstance;
 
 	private final LocalDate birthDate = LocalDate.of(1998, 10, 06);
@@ -41,16 +41,27 @@ public class GetVisitsUntilAgeTest {
 		}
 	}
 
-	public GetVisitsUntilAgeTest(int age, List<Visit> visits) {
-		this.age = age;
-		this.resultVisits = visits;
-	}
+	@Parameterized.Parameter(value = 0)
+	public int age;
+
+	@Parameterized.Parameter(value = 1)
+	public List<Visit> resultVisits;
 
 	@Parameterized.Parameters(name = "{index} : visits until age {0} = {1}")
 	public static Iterable<Object []> data()
 	{
 		return Arrays.asList(new Object[][] {
-		{1, }
+			{1, visits.subList(0, 3)},
+			{2, visits.subList(0, 5)},
+			{3, visits.subList(0, 6)},
+			{4, visits.subList(0, 7)}
 		});
+	}
+
+
+	@Test
+	public void testGetVisitsUntilAge() {
+		assertEquals(petInstance.getVisitsUntilAge(this.age).size(), this.resultVisits.size());
+		assertEquals(petInstance.getVisitsUntilAge(this.age), this.resultVisits);
 	}
 }
