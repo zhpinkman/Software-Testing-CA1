@@ -29,7 +29,7 @@ class PetTest {
 
 	private OwnerRepository owners;
 
-	private static final LocalDate birthDate = LocalDate.of(1999, 10, 6);
+	private static final LocalDate birthDate = LocalDate.of(1998, 10, 6);
 	private static Visit visit1 = new Visit().setDate(LocalDate.of(1998, 10, 05));
 	private static Visit visit2 = new Visit().setDate(LocalDate.of(1998, 10, 06));
 	private static Visit visit3 = new Visit().setDate(LocalDate.of(1998, 10, 07));
@@ -75,8 +75,25 @@ class PetTest {
 			petInstance.getVisits().containsAll(visits) && visits.containsAll(petInstance.getVisits()));
 	}
 
+	@Test
+	public void testGetVisitsUntilAgeBeforeBirthDate() {
+		petInstance.setBirthDate(birthDate);
+		assertTrue(petInstance.getVisitsUntilAge(1).size() == visits.subList(1, 3).size() &&
+			petInstance.getVisitsUntilAge(1).containsAll(visits.subList(1, 3)) &&
+			visits.subList(1, 3).containsAll(petInstance.getVisitsUntilAge(1)));
+	}
+
+	@Test
+	public void testGetVisitsUntilAgeNormal() {
+		petInstance.setBirthDate(birthDate);
+		assertTrue(petInstance.getVisitsUntilAge(1).size() == visits.subList(0, 3).size() &&
+			petInstance.getVisitsUntilAge(1).containsAll(visits.subList(0, 3)) &&
+			visits.subList(0, 3).containsAll(petInstance.getVisitsUntilAge(1)));
+	}
+
 	@Ignore
-	public void testGetVisitsUntilAge() {
+	public void testGetVisitsBetween() {
+
 	}
 
 	@Test
