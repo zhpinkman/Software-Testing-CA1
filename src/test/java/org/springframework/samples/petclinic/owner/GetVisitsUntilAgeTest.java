@@ -54,7 +54,11 @@ public class GetVisitsUntilAgeTest {
 			{1, visits.subList(1, 3)},
 			{2, visits.subList(1, 5)},
 			{3, visits.subList(1, 6)},
-			{4, visits.subList(1, 7)}
+			{4, visits.subList(1, 7)},
+			{1, visits.subList(0, 3)},
+			{2, visits.subList(0, 5)},
+			{3, visits.subList(0, 6)},
+			{4, visits.subList(0, 7)},
 		});
 	}
 
