@@ -1,7 +1,6 @@
 package org.springframework.samples.petclinic.owner;
 
 
-import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.samples.petclinic.visit.Visit;
@@ -91,9 +90,24 @@ class PetTest {
 			visits.subList(0, 3).containsAll(petInstance.getVisitsUntilAge(1)));
 	}
 
-	@Ignore
-	public void testGetVisitsBetween() {
+	@Test
+	public void testGetVisitsBetweenIndDay() {
+		LocalDate localDate1 = LocalDate.of(1998, 10, 06);
+		List<Visit> emptyVisitList = new ArrayList<>();
+		petInstance.setBirthDate(birthDate);
+		assertTrue(petInstance.getVisitsBetween(localDate1, localDate1).size() == emptyVisitList.size() &&
+			petInstance.getVisitsBetween(localDate1, localDate1).equals(emptyVisitList)
+			);
+	}
 
+	@Test
+	public void testGetVisitsBetween() {
+		LocalDate localDate1 = LocalDate.of(1998, 10, 06);
+		LocalDate localDate2 = LocalDate.of(2001, 10, 07);
+		petInstance.setBirthDate(birthDate);
+		assertTrue(petInstance.getVisitsBetween(localDate1, localDate2).size() == visits.subList(2, 6).size() &&
+			petInstance.getVisitsBetween(localDate1, localDate2).containsAll(visits.subList(2, 6)) &&
+			visits.subList(2, 6).containsAll(petInstance.getVisitsBetween(localDate1, localDate2)));
 	}
 
 	@Test
@@ -138,8 +152,5 @@ class PetTest {
 		assertEquals(petInstance.getType().getName(), "Houman");
 	}
 
-//	public void setUpMockPet() {
-//		petMockObject = mock(Pet.class);
-//	}
 
 }
