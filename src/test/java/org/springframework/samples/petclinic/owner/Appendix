@@ -18,7 +18,6 @@ sequence of thread execution. Locks (such as mutex or semaphores) can be used wi
 in order to ensure concurrent modification can not happen.
 
 
-
 ###########################################################################################3
 
 5:
@@ -27,5 +26,8 @@ in order to ensure concurrent modification can not happen.
     it's actually not a @Test method. No errors are raised though.
 
 -- public void testB(): Class definition is flawed since it has "()" in front of it.
+    Besides, since the bar method is capable of either throwing an exception or returning the result,
+    both of the possible outcomes should be well evaluated. So, there should be tests corresponding to each behavior.
+    One for testing the validity of the result value returned from the called method, and other test must monitor the expected thrown exception.
 
 -- public void testC(): Seems fine?

@@ -59,6 +59,4 @@ public class getVisitsBetweenTest {
 		int int_result = result ? 1 : 0;
 		assertEquals(petInstance.getVisitsBetween(first_date, second_date).size(), int_result);
 	}
-
-
 }
