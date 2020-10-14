@@ -16,6 +16,8 @@ Also we can analyse behavior of the methods using the said private method.
 an OS method and there's a lot of uncertainty associated with it. Different runs might have different
 sequence of thread execution. Locks (such as mutex or semaphores) can be used within the actual code
 in order to ensure concurrent modification can not happen.
+Although this matter is in great dispute and has to be cared manually, there are some prebuilt structures or types which are useful.
+To name a few, we can mention ConcurrentHashMaps or also transactional relations.
 
 
 ###########################################################################################3
