@@ -7,9 +7,11 @@ import org.springframework.samples.petclinic.visit.Visit;
 
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -150,6 +152,24 @@ class PetTest {
 		petInstance.setType(petTypeInstance);
 		assertEquals(petInstance.getType().getId(), 0);
 		assertEquals(petInstance.getType().getName(), "Houman");
+	}
+
+	@Test
+	public void testThreadSafety() throws ExecutionException, InterruptedException {
+		int threads = 10;
+		ExecutorService service = Executors.newFixedThreadPool(threads);
+		Collection<Future<Integer>> futures = new ArrayList<>(threads);
+		for (int t = 0; t < threads; ++t) {
+			futures.add(service.submit(() ->{
+				petInstance.addVisit(new Visit());
+				return petInstance.getVisits().size();
+			}));
+		}
+		Set<Integer> ids = new HashSet<>();
+		for (Future<Integer> f : futures) {
+			ids.add(f.get());
+		}
+		assertEquals(ids.size(), threads);
 	}
 
 
