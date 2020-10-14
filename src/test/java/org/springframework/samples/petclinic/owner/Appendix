@@ -18,6 +18,7 @@ sequence of thread execution. Locks (such as mutex or semaphores) can be used wi
 in order to ensure concurrent modification can not happen.
 Although this matter is in great dispute and has to be cared manually, there are some prebuilt structures or types which are useful.
 To name a few, we can mention ConcurrentHashMaps or also transactional relations.
+The specific test about thread safety in the petTest class too, can support our claim. Each time you run that particular test you could see different results.
 
 
 ###########################################################################################3
