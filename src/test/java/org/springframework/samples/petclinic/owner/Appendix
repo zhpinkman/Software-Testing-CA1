@@ -7,11 +7,15 @@ is huge or complex that it needs it's own test, It is advised to put it in anoth
 make it public there. This change is also referred to as "Method Object". The link below is
 a detailed explanation of this method:
 -- http://www.refactoring.com/catalog/replaceMethodWithMethodObject.html
+Also we can analyse behavior of the methods using the said private method.
 
 ###########################################################################################3
 
 
-4:
+4: There's not a definitive way to ensure thread safety by using unit test. Threading is actually
+an OS method and there's a lot of uncertainty associated with it. Different runs might have different
+sequence of thread execution. Locks (such as mutex or semaphores) can be used within the actual code
+in order to ensure concurrent modification can not happen.
 
 
 
@@ -20,8 +24,8 @@ a detailed explanation of this method:
 5:
 
 -- public void testA(): Needs to check directly to see whether the result is correct or not.
-    it's actually not a @Test method. errors?
+    it's actually not a @Test method. No errors are raised though.
 
--- public void testB(): What about the "excepts Exception" declaration?
+-- public void testB(): Class definition is flawed since it has "()" in front of it.
 
 -- public void testC(): Seems fine?
