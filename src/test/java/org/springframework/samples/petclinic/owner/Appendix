@@ -1,0 +1,41 @@
+This file is used for answering questions.
+
+3: We did not tested private methods of the said class. A private method is an
+implementation detail that should be hidden to the users of the class.
+Testing private methods breaks encapsulation. In the unlikely case that the private method
+is huge or complex that it needs it's own test, It is advised to put it in another class and
+make it public there. This change is also referred to as "Method Object". The link below is
+a detailed explanation of this method:
+-- http://www.refactoring.com/catalog/replaceMethodWithMethodObject.html
+Also we can analyse behavior of the methods using the said private method.
+
+###########################################################################################3
+
+
+4: There's not a definitive way to ensure thread safety by using unit test. Threading is actually
+an OS method and there's a lot of uncertainty associated with it. Different runs might have different
+sequence of thread execution. Locks (such as mutex or semaphores) can be used within the actual code
+in order to ensure concurrent modification can not happen.
+Although this matter is in great dispute and has to be cared manually, there are some prebuilt structures or types which are useful.
+To name a few, we can mention ConcurrentHashMaps or also transactional relations.
+The specific test about thread safety in the petTest class too, can support our claim. Each time you run that particular test you could see different results.
+
+
+###########################################################################################3
+
+5:
+
+-- public void testA(): Needs to check directly to see whether the result is correct or not.
+    it's actually not a @Test method. No errors are raised though.
+
+-- public void testB(): Class definition is flawed since it has "()" in front of it.
+    Besides, since the bar method is capable of either throwing an exception or returning the result,
+    both of the possible outcomes should be well evaluated. So, there should be tests corresponding to each behavior.
+    One for testing the validity of the result value returned from the called method, and other test must monitor the expected thrown exception.
+    Also if we want to use the only test method there we should add try/catch block in order to prevent getting exceptions while
+    running test
+
+
+-- public void testC(): As said in the third chapter, it is best to denote which type of exception is expected to be
+    received by the method. testC() will know whether there has been an exception or not but it will not know the type
+    of it so it's better to have a separate test for each expected exception type.
